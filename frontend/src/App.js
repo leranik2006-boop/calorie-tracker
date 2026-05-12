@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import MealsPage from "./pages/MealsPage";
-import FoodsPage from "./pages/FoodsPage";
+import GoalPage from "./pages/GoalPage";
 
 function App() {
   return (
@@ -11,12 +10,10 @@ function App() {
         <nav role="navigation" aria-label="Main navigation">
             <NavLink to="/" end>
             Home
-          </NavLink>
-            <NavLink to="/meals">
-            Meals
-          </NavLink>
-            <NavLink to="/foods">
-            Foods
+          </NavLink>{" "}
+            
+            <NavLink to="/goal">
+            Goal
           </NavLink>
         </nav>
       </header>
@@ -25,8 +22,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/meals" element={<MealsPage />} />
-            <Route path="/foods" element={<FoodsPage />} />
+            <Route path="/goal" element={<GoalPage />} />
           </Routes>
         </div>
       </main>
