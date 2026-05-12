@@ -1,13 +1,14 @@
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
+  background: #f4f6f8;
   margin: 0;
   padding: 0;
 }
 
 nav {
-  background-color: #4caf50;
-  padding: 15px;
+  background: #4f46e5;
+  padding: 15px 25px;
 }
 
 nav a {
@@ -15,10 +16,15 @@ nav a {
   margin-right: 15px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 18px;
 }
 
-nav a:hover {
-  text-decoration: underline;
+/* Active nav link styling (NavLink will apply the 'active' class) */
+nav a.active {
+  color: #111827;
+  background: rgba(255,255,255,0.12);
+  padding: 6px 10px;
+  border-radius: 6px;
 }
 
 .container {
@@ -27,40 +33,62 @@ nav a:hover {
   background: white;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 h1 {
-  color: #333;
+  color: #222;
 }
 
 input {
   padding: 10px;
   margin-right: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
   border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 button {
-  padding: 10px 15px;
+  padding: 10px 16px;
   border: none;
-  background-color: #4caf50;
+  background: #4f46e5;
   color: white;
   border-radius: 8px;
   cursor: pointer;
-  margin-left: 5px;
+  transition: background 150ms ease, transform 120ms ease;
 }
 
 button:hover {
-  background-color: #45a049;
+  background: #3730a3;
 }
 
 li {
-  margin-top: 15px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  border-radius: 8px;
+  margin-top: 12px;
+}
+
+/* Small UX and responsive tweaks */
+ul, ol {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+li {
   list-style: none;
 }
+
+button:active {
+  transform: translateY(1px);
+}
+
+input:focus, button:focus {
+  outline: 3px solid rgba(79,70,229,0.15);
+  outline-offset: 2px;
+}
+
+/* Make inputs full width on small screens */
+@media (max-width: 520px) {
+  .container { padding: 20px; margin: 20px; }
+  input { display: block; width: 100%; margin: 0 0 12px 0; }
+  button { width: 100%; }
+}
+
 
