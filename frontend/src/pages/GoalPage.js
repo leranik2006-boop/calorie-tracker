@@ -1,46 +1,52 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function GoalPage() {
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
   const [goal, setGoal] = useState("Maintain Weight");
   const [activityLevel, setActivityLevel] = useState("Medium");
-  const [calories, setCalories] = useState("");
+  const [calories, setCalories] = useState(0);
+  const [bmi, setBmi] = useState(0);
+  const [message, setMessage] = useState("");
 
-  function calculateCalories() {
-    // Basic validation: weight and height must be positive numbers (if provided)
-    const w = Number(weight);
-    const h = Number(height);
-
-    if (weight !== "" && (!Number.isFinite(w) || w <= 0)) {
-      alert("Please enter a valid positive weight");
+  function calculateHealthData() {
+    if (!weight || !height) {
+      alert("Please fill all fields");
       return;
     }
 
-    if (height !== "" && (!Number.isFinite(h) || h <= 0)) {
-      alert("Please enter a valid positive height");
-      return;
+    let result = weight * 24;
+
+    if (activityLevel === "High") {
+      result += 500;
     }
 
-    let result = 2200;
+    if (activityLevel === "Low") {
+      result -= 200;
+    }
 
     if (goal === "Lose Weight") {
-      result = 1800;
+      result -= 300;
     }
 
     if (goal === "Gain Muscle") {
-      result = 2800;
+      result += 300;
     }
 
-    setCalories(result);
+    setCalories(Math.round(result));
 
-    // persist to localStorage
-    try {
-      const data = { weight, height, goal, activityLevel, calories: result };
-      localStorage.setItem("calorieTracker:goal", JSON.stringify(data));
-    } catch (e) {
-      console.warn("Failed to save goal to localStorage", e);
-    }
+    const bmiValue = (
+      weight / ((height / 100) * (height / 100))
+    ).toFixed(1);
+
+    setBmi(bmiValue);
+
+    localStorage.setItem("weight", weight);
+    localStorage.setItem("height", height);
+    localStorage.setItem("goal", goal);
+    localStorage.setItem("activityLevel", activityLevel);
+
+    setMessage("Goal saved successfully!");
   }
 
   function resetForm() {
@@ -48,54 +54,28 @@ function GoalPage() {
     setHeight("");
     setGoal("Maintain Weight");
     setActivityLevel("Medium");
-    setCalories("");
-    try {
-      localStorage.removeItem("calorieTracker:goal");
-    } catch (e) {
-      console.warn("Failed to clear localStorage", e);
-    }
+    setCalories(0);
+    setBmi(0);
+    setMessage("");
   }
 
-  useEffect(() => {
-    // load from localStorage if present
-    try {
-      const raw = localStorage.getItem("calorieTracker:goal");
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (parsed) {
-          setWeight(parsed.weight ?? "");
-          setHeight(parsed.height ?? "");
-          setGoal(parsed.goal ?? "Maintain Weight");
-          setActivityLevel(parsed.activityLevel ?? "Medium");
-          setCalories(parsed.calories ?? "");
-        }
-      }
-    } catch (e) {
-      console.warn("Failed to load goal from localStorage", e);
-    }
-  }, []);
-
   return (
-    <div>
+    <div className="container">
       <h1>Nutrition Goal</h1>
 
       <input
         type="number"
-        placeholder="Weight"
+        placeholder="Weight (kg)"
         value={weight}
         onChange={(e) => setWeight(e.target.value)}
       />
 
-      <br /><br />
-
       <input
         type="number"
-        placeholder="Height"
+        placeholder="Height (cm)"
         value={height}
         onChange={(e) => setHeight(e.target.value)}
       />
-
-      <br /><br />
 
       <select
         value={goal}
@@ -106,8 +86,6 @@ function GoalPage() {
         <option>Maintain Weight</option>
       </select>
 
-      <br /><br />
-
       <select
         value={activityLevel}
         onChange={(e) => setActivityLevel(e.target.value)}
@@ -117,21 +95,32 @@ function GoalPage() {
         <option>High</option>
       </select>
 
-      <br /><br />
-
-      <button onClick={calculateCalories}>
-        Save
+      <button onClick={calculateHealthData}>
+        Save Goal
       </button>
 
       <button onClick={resetForm}>
         Cancel
       </button>
 
-      <h2>
-        Daily Calories: {calories}
-      </h2>
+      <div className="results">
+        <h2>Dashboard</h2>
+        <p><strong>Daily Calories:</strong> {calories}</p>
+        <p><strong>BMI:</strong> {bmi}</p>
+        <p><strong>Goal:</strong> {goal}</p>
+        <p><strong>Activity:</strong> {activityLevel}</p>
+        <p>{message}</p>
+      </div>
+
+      <div className="progress-bar">
+        <div
+          className="progress"
+          style={{ width: `${Math.min((calories / 3000) * 100, 100)}%` }}
+        ></div>
+      </div>
     </div>
   );
 }
 
 export default GoalPage;
+

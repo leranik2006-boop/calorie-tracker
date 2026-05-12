@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import "./App.css";
 
 import HomePage from "./pages/HomePage";
 import GoalPage from "./pages/GoalPage";
