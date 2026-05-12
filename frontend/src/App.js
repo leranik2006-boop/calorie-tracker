@@ -8,13 +8,8 @@ function App() {
     <BrowserRouter>
       <header>
         <nav role="navigation" aria-label="Main navigation">
-            <NavLink to="/" end>
-            Home
-          </NavLink>{" "}
-            
-            <NavLink to="/goal">
-            Goal
-          </NavLink>
+          <NavLink to="/">Home</NavLink>{" "}
+          <NavLink to="/goal">Goal</NavLink>
         </nav>
       </header>
 

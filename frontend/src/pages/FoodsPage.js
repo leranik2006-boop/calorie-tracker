@@ -4,6 +4,7 @@ function FoodsPage() {
   const [foods, setFoods] = useState([
     { id: 1, name: "Apple", calories: 52 },
     { id: 2, name: "Banana", calories: 89 },
+    { id: 3, name: "Orange", calories: 47 }
   ]);
 
   const [name, setName] = useState("");
