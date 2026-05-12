@@ -13,7 +13,7 @@ nav {
 
 nav a {
   color: white;
-  margin-right: 15px;
+  margin-right: 20px;
   text-decoration: none;
   font-weight: bold;
   font-size: 18px;
@@ -89,6 +89,11 @@ input:focus, button:focus {
   .container { padding: 20px; margin: 20px; }
   input { display: block; width: 100%; margin: 0 0 12px 0; }
   button { width: 100%; }
+}
+
+
+nav a:hover {
+  opacity: 0.8;
 }
 
 
