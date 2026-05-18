@@ -1,5 +1,20 @@
 [
-  { "id": 1, "name": "Apple", "calories_per_unit": 95, "unit": "piece" },
-  { "id": 2, "name": "Banana", "calories_per_unit": 105, "unit": "piece" },
-  { "id": 3, "name": "Chicken Breast (100g)", "calories_per_unit": 165, "unit": "100g" }
+  {
+    "id": 1,
+    "name": "Apple",
+    "calories_per_unit": 95,
+    "unit": "piece"
+  },
+  {
+    "id": 2,
+    "name": "Banana",
+    "calories_per_unit": 105,
+    "unit": "piece"
+  },
+  {
+    "id": 3,
+    "name": "Chicken Breast (100g)",
+    "calories_per_unit": 165,
+    "unit": "100g"
+  }
 ]

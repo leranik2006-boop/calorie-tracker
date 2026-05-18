@@ -14,12 +14,36 @@ async function writeFoods(foods) {
 
 module.exports = {
   getAll: async () => readFoods(),
+
+  getById: async (id) => {
+    const foods = await readFoods();
+    return foods.find((f) => f.id === id);
+  },
+
   add: async (food) => {
     const foods = await readFoods();
-    const nextId = foods.length ? Math.max(...foods.map(f => f.id)) + 1 : 1;
+    const nextId = foods.length ? Math.max(...foods.map((f) => f.id)) + 1 : 1;
     const newFood = { id: nextId, ...food };
     foods.push(newFood);
     await writeFoods(foods);
     return newFood;
+  },
+
+  update: async (id, patch) => {
+    const foods = await readFoods();
+    const idx = foods.findIndex((f) => f.id === id);
+    if (idx === -1) return null;
+    foods[idx] = { ...foods[idx], ...patch, id };
+    await writeFoods(foods);
+    return foods[idx];
+  },
+
+  remove: async (id) => {
+    const foods = await readFoods();
+    const idx = foods.findIndex((f) => f.id === id);
+    if (idx === -1) return false;
+    foods.splice(idx, 1);
+    await writeFoods(foods);
+    return true;
   },
 };

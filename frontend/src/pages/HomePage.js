@@ -23,12 +23,20 @@ function HomePage() {
         meals and foods.
       </p>
 
-      <div style={{ marginTop: 12 }}>
-        <strong>Backend status:</strong>
-        <ul>
-          <li>Meals API: {mealsStatus ?? "checking..."}</li>
-          <li>Foods API: {foodsStatus ?? "checking..."}</li>
-        </ul>
+      <div className="results">
+        <h2 style={{ marginTop: 0 }}>Backend Status</h2>
+        <p>
+          Meals API
+          <span className={`status-badge ${mealsStatus ?? "pending"}`}>
+            {mealsStatus ?? "checking..."}
+          </span>
+        </p>
+        <p>
+          Foods API
+          <span className={`status-badge ${foodsStatus ?? "pending"}`}>
+            {foodsStatus ?? "checking..."}
+          </span>
+        </p>
       </div>
     </div>
   );

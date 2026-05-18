@@ -99,7 +99,7 @@ function GoalPage() {
         Save Goal
       </button>
 
-      <button onClick={resetForm}>
+      <button className="secondary" onClick={resetForm}>
         Cancel
       </button>
 

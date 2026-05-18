@@ -1,3 +1,32 @@
 [
-  { "id": 1, "date": "2026-05-08", "name": "Apple", "calories": 95 }
+  {
+    "id": 2,
+    "name": "Chicken",
+    "calories": 12,
+    "date": "2026-05-12"
+  },
+  {
+    "id": 3,
+    "foodId": 2,
+    "quantity": 3,
+    "name": "Banana x3",
+    "calories": 315,
+    "date": "2026-05-18"
+  },
+  {
+    "id": 4,
+    "foodId": 2,
+    "quantity": 3,
+    "name": "Banana x3",
+    "calories": 315,
+    "date": "2026-05-18"
+  },
+  {
+    "id": 5,
+    "foodId": 2,
+    "quantity": 4,
+    "name": "Banana x4",
+    "calories": 420,
+    "date": "2026-05-18"
+  }
 ]
