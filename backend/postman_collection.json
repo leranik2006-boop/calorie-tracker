@@ -1,0 +1,38 @@
+{
+  "info": {
+    "name": "Calorie Tracker Backend",
+    "_postman_id": "b6f3f9a2-0000-4000-8000-000000000000",
+    "description": "Collection for the backend /goal endpoint",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "POST /goal",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"weight\": 70,\n  \"height\": 170,\n  \"goal\": \"Maintain Weight\",\n  \"activityLevel\": \"Medium\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/goal",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "goal"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
